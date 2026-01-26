@@ -2,7 +2,7 @@
 
 > 🎨 将 Markdown 一键转换为精美图片 | Convert Markdown to beautiful poster images
 
-一个专为 **Gemini CLI** 设计的 Skill，也可独立使用。支持 7 种精心设计的主题，让你的文章、笔记、教程瞬间变成可分享的精美图片。
+一个通用的 **AI Agent Skill**，支持 Gemini CLI、Cursor、Claude 等任何支持 Skill 的 AI 编程助手。包含 7 种精心设计的主题，让你的文章、笔记、教程瞬间变成可分享的精美图片。
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Node](https://img.shields.io/badge/node-%3E%3D18-green.svg)
@@ -65,9 +65,13 @@ node render.js tech-news.md output.png lcars pc
 node render.js crypto-update.md output.png cyberpunk mobile
 ```
 
-## 🤖 作为 Gemini CLI Skill 使用
+## 🤖 作为 AI 编程助手 Skill 使用
 
-将此目录放入 `~/.agent/skills/` 即可。Gemini CLI 会自动根据内容选择最合适的主题！
+本项目可以作为多种 AI 编程助手的 Skill/Tool 使用，让 AI 自动根据内容选择合适的主题。
+
+### Gemini CLI / Antigravity
+
+将目录放入全局 skills 文件夹：
 
 ```
 ~/.agent/skills/
@@ -77,11 +81,37 @@ node render.js crypto-update.md output.png cyberpunk mobile
     └── ...
 ```
 
-使用时只需告诉 Gemini：
+使用时告诉 AI：
 
 > "把这段内容转成图片"
 
-AI 会自动分析内容语气，选择匹配的主题并生成图片。
+### Cursor
+
+在项目根目录创建 `.cursor/rules` 文件，添加：
+
+```
+当用户需要将 Markdown 转换为图片时，使用 md2poster-skill：
+- 路径：~/.agent/skills/md2poster-skill/
+- 命令：node render.js <input.md> <output.png> <theme> <size>
+- 主题选择：根据内容语气选择 notion/lapis/bronya/lcars/cyberpunk/torillic/phycat-prussian
+```
+
+### Claude (MCP Tool)
+
+可以将 `render.js` 封装为 MCP Tool，在 `claude_desktop_config.json` 中配置：
+
+```json
+{
+  "mcpServers": {
+    "md2poster": {
+      "command": "node",
+      "args": ["/path/to/md2poster-skill/render.js"]
+    }
+  }
+}
+```
+
+---
 
 ## 📦 技术栈
 
@@ -100,6 +130,10 @@ AI 会自动分析内容语气，选择匹配的主题并生成图片。
 
 欢迎 PR 贡献新主题！
 
+## 🙏 致谢
+
+本项目的主题样式灵感来源于 [Typora Themes](https://theme.typora.io/)，感谢开源社区的贡献！
+
 ## 📄 License
 
 MIT © [badDevBuild](https://github.com/badDevBuild)
@@ -107,3 +141,4 @@ MIT © [badDevBuild](https://github.com/badDevBuild)
 ---
 
 **喜欢这个项目？给个 ⭐ 吧！**
+
