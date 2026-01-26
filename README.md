@@ -85,31 +85,6 @@ node render.js crypto-update.md output.png cyberpunk mobile
 
 > "把这段内容转成图片"
 
-### Cursor
-
-在项目根目录创建 `.cursor/rules` 文件，添加：
-
-```
-当用户需要将 Markdown 转换为图片时，使用 md2poster-skill：
-- 路径：~/.agent/skills/md2poster-skill/
-- 命令：node render.js <input.md> <output.png> <theme> <size>
-- 主题选择：根据内容语气选择 notion/lapis/bronya/lcars/cyberpunk/torillic/phycat-prussian
-```
-
-### Claude (MCP Tool)
-
-可以将 `render.js` 封装为 MCP Tool，在 `claude_desktop_config.json` 中配置：
-
-```json
-{
-  "mcpServers": {
-    "md2poster": {
-      "command": "node",
-      "args": ["/path/to/md2poster-skill/render.js"]
-    }
-  }
-}
-```
 
 ---
 
