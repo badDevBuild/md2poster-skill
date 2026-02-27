@@ -36,14 +36,14 @@
 ### 安装依赖
 
 ```bash
-cd md2poster-skill
+cd md2poster-skill/markdown-to-poster-skill/app
 npm install
 ```
 
 ### 使用方法
 
 ```bash
-node render.js <input.md> [output.png] [theme] [size]
+node markdown-to-poster-skill/render.js <input.md> [output.png] [theme] [size]
 ```
 
 **参数说明:**
@@ -56,13 +56,13 @@ node render.js <input.md> [output.png] [theme] [size]
 
 ```bash
 # 使用 Notion 简洁主题
-node render.js my-notes.md output.png notion mobile
+node markdown-to-poster-skill/render.js my-notes.md output.png notion mobile
 
 # 使用 LCARS 科幻主题
-node render.js tech-news.md output.png lcars pc
+node markdown-to-poster-skill/render.js tech-news.md output.png lcars pc
 
 # 使用赛博朋克主题
-node render.js crypto-update.md output.png cyberpunk mobile
+node markdown-to-poster-skill/render.js crypto-update.md output.png cyberpunk mobile
 ```
 
 ## 🤖 作为 AI 编程助手 Skill 使用
@@ -73,12 +73,13 @@ node render.js crypto-update.md output.png cyberpunk mobile
 
 将目录放入全局 skills 文件夹：
 
-```
+```text
 ~/.agent/skills/
-└── md2poster-skill/
+└── markdown-to-poster-skill/
     ├── SKILL.md
     ├── render.js
-    └── ...
+    └── app/
+        └── ... (内部运行环境)
 ```
 
 使用时告诉 AI：
@@ -97,7 +98,7 @@ node render.js crypto-update.md output.png cyberpunk mobile
 
 ## 🎨 自定义主题
 
-在 `vite-project/src/App.tsx` 中可以轻松添加新主题：
+在 `markdown-to-poster-skill/app/vite-project/src/App.tsx` 中可以轻松添加新主题：
 
 1. 定义主题颜色到 `themeColors` 对象
 2. 创建对应的 CSS 变量和样式

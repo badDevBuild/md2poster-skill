@@ -2,12 +2,13 @@ const fs = require('fs');
 const path = require('path');
 const os = require('os');
 const { spawn } = require('child_process');
-const puppeteer = require('puppeteer');
-
-const PROJECT_ROOT = path.resolve(__dirname);
-const VITE_PROJECT_ROOT = path.join(PROJECT_ROOT, 'vite-project');
+const APP_DIR = path.join(__dirname, 'app');
+const VITE_PROJECT_ROOT = path.join(APP_DIR, 'vite-project');
 const PUBLIC_DIR = path.join(VITE_PROJECT_ROOT, 'public');
 const CONTENT_FILE = path.join(PUBLIC_DIR, 'content.json');
+
+// Require puppeteer from the app's node_modules
+const puppeteer = require(path.join(APP_DIR, 'node_modules/puppeteer'));
 
 // Helper to sleep
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
@@ -68,7 +69,7 @@ async function main() {
     // 2. Start Vite Server
     console.log('Starting Vite server...');
     const vite = spawn('npm', ['run', 'dev'], {
-        cwd: PROJECT_ROOT,
+        cwd: APP_DIR,
         stdio: 'pipe', // capture output to detect start
         shell: true
     });

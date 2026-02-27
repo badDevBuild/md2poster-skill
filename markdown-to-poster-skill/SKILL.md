@@ -10,9 +10,9 @@ This skill allows you to convert Markdown content into a visually appealing imag
 ## Prerequisites
 
 - Node.js (v18+)
-- Dependencies installed within the skill directory:
+- Dependencies installed within the skill's app directory:
   ```bash
-  cd <skill-root>
+  cd <skill-root>/app
   npm install
   ```
 
